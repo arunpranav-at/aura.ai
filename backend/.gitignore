@@ -1,0 +1,9 @@
+#build files
+__pycache__
+
+#environment files
+.env
+.env.extra
+
+#router to verify the server is running
+sampleRouter
