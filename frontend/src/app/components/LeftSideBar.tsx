@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IoMdInformationCircleOutline } from "react-icons/io";
+import { IoMdInformationCircleOutline, IoMdCloudUpload } from 'react-icons/io';
 import { FaRegEdit } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -73,19 +73,34 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
     <div className="w-64 bg-sidebar text-textcolor h-full flex flex-col">
       <div className="p-4">
         <div className="flex items-center justify-between">
-        <div className="font-semibold mb-2 relative group flex">
-          <h1
-            onClick={() => router.push("/about")}
-            className="text-5xl bg-gradient-to-r from-violet-500  to-pink-500 inline-block text-transparent bg-clip-text cursor-pointer"
-          >
-            {companyName}
-          </h1>
-         
-            <IoMdInformationCircleOutline className="ml-[2rem] mt-[6%] text-violet-500 cursor-progress" />
-            <span className="tooltip hidden absolute top-full right-0 mt-2 w-48 p-2 bg-black text-white text-sm rounded group-hover:block">
-              Click the logo to know more about our platform.
-            </span>
-          </div>
+          <div className="font-semibold mb-2 relative flex">
+            <div className="relative group flex items-center">
+              <h1
+                onClick={() => router.push("/about")}
+                className="text-5xl bg-gradient-to-r from-violet-500 to-pink-500 inline-block text-transparent bg-clip-text cursor-pointer"
+              >
+                {companyName}
+              </h1>
+              <IoMdInformationCircleOutline className=" text-violet-500 cursor-progress" />
+              <span className="tooltip hidden absolute top-full left-0 mt-2 w-48 p-2 bg-black text-white text-sm rounded group-hover:block">
+                Click the logo button to learn more about our platform and to test our platform.
+              </span>
+            </div>
+            {isLoggedIn && (
+              <div className="relative group flex items-center">
+                <button
+                  onClick={() => router.push("/upload")}
+                  className="ml-2 px-0.5 py-2.5 bg-gradient-to-r from-violet-500 to-pink-500 text-white text-sm rounded hover:bg-pink-700 flex items-center justify-center"
+                >
+                  <IoMdCloudUpload className="mr-1" />
+                  Upload
+                </button>
+                <span className="tooltip hidden absolute top-full right-0 mt-2 w-48 p-2 bg-black text-white text-sm rounded group-hover:block">
+                  Use the upload button to add an external knowledge source document.
+                </span>
+              </div>
+            )}
+          </div>     
         </div>
 
         {isLoggedIn && (
