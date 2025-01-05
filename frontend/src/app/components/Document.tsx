@@ -20,7 +20,7 @@ const DocumentCell: React.FC<Document> = (doc: Document) => {
 
   return (
     <div
-      className="flex items-center m-4 p-1 bg-slate-800 border-2 border-slate-800 rounded-lg cursor-pointer transition duration-300"
+      className="flex items-center my-1 mx-4 p-1 bg-slate-800 border-2 border-slate-800 rounded-lg cursor-pointer transition duration-300"
       onClick={handleDownload}
     >
       {/* File Icon */}

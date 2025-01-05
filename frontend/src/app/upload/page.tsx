@@ -102,6 +102,24 @@ const UploadPage: React.FC = () => {
         }
 
         const result = await response.json();
+        const documents_response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/rag/documents`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include", // Include cookies in the request
+            body: JSON.stringify({ username: user.name || "" }),
+          }
+        );
+        if (documents_response.ok) {
+          const documents_data = await documents_response.json();
+          setDocuments(documents_data.documents);
+          setDocumentFetching(false);
+        } else {
+          console.log("Error fetching documents:", documents_response);
+        }
         console.log("File uploaded successfully:", result);
       } catch (error) {
         console.error("Error uploading file:", error);
