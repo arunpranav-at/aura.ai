@@ -109,7 +109,7 @@ const AboutUs: React.FC = () => {
         <p className="text-sm mt-2 italic text-gray-300">
           <span className="text-pink-500 text-lg">A</span>nalytics and {" "}
           <span className="text-pink-500 text-lg">U</span>nderstanding for{" "}
-          <span className="text-pink-500 text-lg ml-2">R</span>esponsible{" "}
+          <span className="text-pink-500 text-lg">R</span>esponsible{" "}
           <span className="text-pink-500 text-lg">A</span>I{" "}
         </p>
         <p className="mt-10">
