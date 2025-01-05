@@ -1,14 +1,17 @@
 from fastapi import APIRouter, HTTPException
 from models.analytics import Analytics
+from config import AppConfig, get_config
 from typing import List
 
 router = APIRouter()
+
+config = AppConfig()
 
 
 @router.get("/")
 async def get_analytics():
     try:
-        analytics_collection = db["Analytics"]
+        analytics_collection = config.db["Analytics"]
         data = await analytics_collection.find().to_list()
         models = []
         for i in data:

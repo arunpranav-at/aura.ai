@@ -4,6 +4,7 @@ __pycache__
 #environment files
 .env
 .env.extra
+.env.production
 
 #router to verify the server is running
 sampleRouter

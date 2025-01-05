@@ -52,7 +52,7 @@ npm run start
 
 ### Docker
 
-1. Build a Docker image with the following command after configuring the necessary environment variables (assuming you're using `FAITH/frontend` as the working directory):
+1. Build a Docker image with the following command after configuring the necessary environment variables (assuming you're using `aura.ai/frontend` as the working directory):
 
 ```shell
 docker build --build-arg NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL -t aura-ai-frontend:latest .

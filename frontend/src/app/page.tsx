@@ -122,7 +122,7 @@ const ChatPage = () => {
       try {
         // Check if the user is authenticated by validating the JWT in the cookies
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/validate_token`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/token/validate`,
           {
             method: "GET",
             credentials: "include", // Include cookies in the request

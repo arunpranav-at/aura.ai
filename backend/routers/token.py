@@ -13,6 +13,7 @@ config = AppConfig()
 async def validate_token(request: Request) -> JSONResponse:
     if token := request.cookies.get("token"):
         decoded_token = decode_jwt(token)
+        print(config.db)
         user = await config.db["User"].find_one(
             {"_id": bson.objectid.ObjectId(decoded_token["userid"])}
         )
