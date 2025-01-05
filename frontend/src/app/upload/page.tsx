@@ -65,7 +65,7 @@ const UploadPage: React.FC = () => {
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/rag/upload/document`,
           {
             method: "POST",
-            body: formData,
+            body: formData
           }
         );
 

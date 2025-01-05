@@ -455,7 +455,7 @@ const ChatPage = () => {
   };
 
   const handleLogout = async () => {
-    try {
+    /*try {
       // Check if the user is authenticated by validating the JWT in the cookies
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/sign_out`,
@@ -475,7 +475,12 @@ const ChatPage = () => {
     } catch (error) {
       console.log("Error validating token:", error);
       setLoggedIn(false);
-    }
+    }*/
+    Cookies.remove("token");
+    setLoggedIn(false);
+    setHistory([]);
+    setMessages([]);
+    setAllChats([]);
   };
 
   const handleModelChange = (selectedModel: string) => {

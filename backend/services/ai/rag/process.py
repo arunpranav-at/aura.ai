@@ -74,7 +74,7 @@ def upload_rag_document(contents: dict):
         file_name = f"{blob_id}.json"
         data = json.dumps(contents)
 
-        blob_client = self.rag_container.get_blob_client(file_name)
+        blob_client = config.rag_container.get_blob_client(file_name)
 
         blob_client.upload_blob(data, overwrite=True, metadata={
                                 "username": username, "filename": metadata_filename})
@@ -95,7 +95,7 @@ def ingest_document(file_path: str):
     """
     processed_content = process_document(file_path)
     if processed_content:
-        index_result = self.search.upload_documents([processed_content])
+        index_result = config.search.upload_documents([processed_content])
         upload_status = upload_rag_document(processed_content)
         return upload_status
     else:
