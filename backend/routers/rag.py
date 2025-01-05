@@ -7,7 +7,7 @@ from services.ai.rag.process import ingest_document
 from services.ai.rag.response import process_query
 from config import get_config, AppConfig
 from helpers.filename import get_filename_hash
-from models.rag import KnowledgeBaseUpload, KnowledgeBaseQuery
+from models.rag import KnowledgeBaseUpload, KnowledgeBaseQuery, KnowledgeBaseRetrieve
 
 
 router = APIRouter()
@@ -58,3 +58,26 @@ async def generate_response(query: KnowledgeBaseQuery):
         return {"bot_response": rag_response}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/documents")
+async def get_documents(payload: KnowledgeBaseRetrieve):
+    matching_blobs = []
+    try:
+        for blob in config.storage_container.list_blobs():
+            blob_name = blob.name
+            blob_client = config.storage_container.get_blob_client(blob_name)
+            # Get blob metadata
+            metadata = blob_client.get_blob_properties().metadata
+
+            # Check if the metadata contains the username key and value
+            if 'username' in metadata and metadata['username'] == payload.username:
+                file_path = f"{config.env.knowledge_base_endpoint}{blob_name}"
+                rag_path = f"{config.env.rag_endpoint}{blob_name}"
+                filename = metadata.get('filename')
+                blob_id = blob_name.split(".")[0]
+                matching_blobs.append(
+                    {"file_path": file_path, "rag_path": rag_path, "filename": filename, "id": blob_id})
+        return {"documents": matching_blobs}
+    except Exception as e:
+        return {"error": "Error retrieving files"}

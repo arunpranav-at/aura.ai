@@ -14,7 +14,7 @@ async def validate_token(request: Request) -> JSONResponse:
     if token := request.cookies.get("token"):
         decoded_token = decode_jwt(token)
         user = await config.db["User"].find_one(
-            {"_id": bson.objectid.ObjectId(decoded_token["userid"])}
+            {"_id": bson.objectid.ObjectId(decoded_token.get("userid", ""))}
         )
         if not user:
             raise HTTPException(
@@ -24,7 +24,7 @@ async def validate_token(request: Request) -> JSONResponse:
         return {
             "user": {
                 "name": user.get("username"),
-                "id": decoded_token["userid"],
+                "id": decoded_token.get("userid", ""),
                 "email": user.get("email"),
                 "avatar": user.get("avatar"),
             }

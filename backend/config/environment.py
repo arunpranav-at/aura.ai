@@ -19,6 +19,7 @@ class EnvVarConfig(BaseSettings):
 
     # Azure resources for RAG
     knowledge_base_endpoint: str
+    rag_endpoint: str
     azure_storage_account_connection_string: str
     kb_container_name: str
     rag_container_name: str

@@ -9,3 +9,7 @@ class KnowledgeBaseUpload(BaseModel):
 class KnowledgeBaseQuery(BaseModel):
     username: str
     query: str
+
+
+class KnowledgeBaseRetrieve(BaseModel):
+    username: str
