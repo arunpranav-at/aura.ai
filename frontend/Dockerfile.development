@@ -1,0 +1,45 @@
+# Use the official Node.js image as a base image
+FROM node:18-alpine AS builder
+
+# Set the working directory inside the container
+WORKDIR /frontend
+
+# Copy the package.json and package-lock.json (or yarn.lock) into the container
+COPY ./frontend/package*.json ./
+
+# Install dependencies (including production and dev dependencies)
+RUN npm i --legacy-peer-deps
+
+# Copy the entire project into the container
+COPY ./frontend/* ./frontend
+
+ARG NEXT_PUBLIC_BACKEND_URL
+ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+
+# Build the Next.js application
+RUN npm run build
+
+# Use a smaller image for production (we're using an official Node.js image)
+FROM node:18-alpine
+
+# Set the working directory inside the container
+WORKDIR /frontend
+
+# Copy only the necessary files from the build stage
+COPY --from=builder /frontend ./
+
+RUN apk add --no-cache nginx
+
+# Install only the production dependencies
+RUN cd ./frontend && npm install --legacy-peer-deps
+
+COPY ./frontend/nginx.conf /etc/nginx/nginx.conf
+COPY ./certs/cert.pem /etc/ssl/certs/cert.pem
+COPY ./certs/key.pem /etc/ssl/private/key.pem
+
+EXPOSE 80 443
+
+ARG NEXT_PUBLIC_BACKEND_URL
+ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+
+CMD ["sh", "-c", "nginx && npm run dev"]
