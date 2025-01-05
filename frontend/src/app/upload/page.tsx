@@ -109,7 +109,7 @@ const UploadPage: React.FC = () => {
       setMessages((prev) => [
         ...prev,
         { sender: "user", text: message },
-        { sender: "bot", text: data.response },
+        { sender: "bot", text: data.bot_response },
       ]);
     } catch (error) {
       console.error("Error sending message:", error);
