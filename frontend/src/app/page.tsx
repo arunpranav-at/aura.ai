@@ -134,7 +134,7 @@ const ChatPage = () => {
           setLoggedIn(true);
           setUser(data.user);
           if (data.user && allChats.length === 0) {
-            localStorage.setItem("username", data.user.username);
+            localStorage.setItem("username", data.user.name);
             fetchChats(data.user.id);
           }
         } else {

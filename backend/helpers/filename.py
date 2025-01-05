@@ -1,4 +1,5 @@
 import hashlib
+import os
 
 
 def get_filename_hash(file_name: str, hash_algorithm='sha256'):
