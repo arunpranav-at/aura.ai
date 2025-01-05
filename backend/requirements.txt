@@ -18,3 +18,10 @@ pydantic-settings
 passlib
 PyJWT
 passlib[bcrypt]
+azure-search-documents
+azure-storage-blob
+azure-core
+python-multipart
+azure-ai-formrecognizer
+langchain-community
+langchain-openai

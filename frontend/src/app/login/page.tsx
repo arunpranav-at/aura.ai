@@ -33,7 +33,6 @@ const GlassLogin: React.FC = () => {
       if (response.ok) {
         // Save JWT token in local storage
         if (data.token) {
-          
           setMessage("Login successful! Redirecting...");
           
         } else {

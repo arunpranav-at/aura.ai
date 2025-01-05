@@ -16,6 +16,18 @@ class EnvVarConfig(BaseSettings):
     jwt_secret: str
     bing_api_key: str
     bing_endpoint: str
+
+    # Azure resources for RAG
+    knowledge_base_endpoint: str
+    azure_storage_account_connection_string: str
+    kb_container_name: str
+    rag_container_name: str
+    ai_search_endpoint: str
+    ai_search_api_key: str
+    ai_search_index_name: str
+    document_intelligence_endpoint: str
+    document_intelligence_key: str
+
     azure_openai_endpoint: str
     azure_openai_api_key: str
     azure_openai_deployment: str

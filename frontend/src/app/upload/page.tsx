@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChatBox from "../components/ChatBox";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,37 @@ const UploadPage: React.FC = () => {
   const [modelSelection, setModelSelection] = useState("default-model");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState<any | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Check if the user is authenticated by validating the JWT in the cookies
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/token/validate`,
+          {
+            method: "GET",
+            credentials: "include", // Include cookies in the request
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setLoggedIn(true);
+          setUser(data.user);
+        } else {
+          router.push("/")
+          setLoggedIn(false);
+        }
+      } catch (error) {
+        console.log("Error validating token:", error);
+        setLoggedIn(false);
+      }
+    };
+
+    fetchData();
+  }, [loggedIn]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -28,9 +59,10 @@ const UploadPage: React.FC = () => {
         setSubmitted(true);
         const formData = new FormData();
         formData.append("file", selectedFile);
+        formData.append("username", localStorage.getItem("username") || "");
 
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/upload`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/rag/upload/document`,
           {
             method: "POST",
             body: formData,
@@ -42,7 +74,6 @@ const UploadPage: React.FC = () => {
         }
 
         const result = await response.json();
-        alert("File uploaded successfully!");
         console.log("File uploaded successfully:", result);
       } catch (error) {
         console.error("Error uploading file:", error);
@@ -60,13 +91,13 @@ const UploadPage: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/chat`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/rag/response`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ message, model: modelSelection }),
+          body: JSON.stringify({ username: localStorage.getItem("username") || "", query: message }),
         }
       );
 
@@ -159,12 +190,7 @@ const UploadPage: React.FC = () => {
             model="default-model"
             otherModels={["default-model", "alternative-model"]}
             historyId={null}
-            user={{
-              id: "user-id",
-              avatar: "/avatar.png",
-              name: "User Name",
-              email: "user@example.com",
-            }}
+            user={user}
             fetching={fetching}
             modelSelection={modelSelection}
             setModelSelection={setModelSelection}
