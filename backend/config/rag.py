@@ -31,7 +31,7 @@ def get_storage_client(connection_string: str, container_name: str) -> BlobServi
 
 
 # Set up the Azure Blob Storage client
-def get_rag_client(connection_string: str, container_name: str) -> BlobServiceClient:
+def get_rag_client(connection_string: str, rag_container_name: str) -> BlobServiceClient:
     blob_service_client: BlobServiceClient = BlobServiceClient.from_connection_string(
         connection_string)
     rag_container_client: ContainerClient = blob_service_client.get_container_client(
