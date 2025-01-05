@@ -166,7 +166,7 @@ const UploadPage: React.FC = () => {
 
   return (
     <div className="grid grid-cols-9 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
-      <div className="flex col-span-2 flex-col min-h-screen bg-slate-900 text-white">
+      <div className="flex col-span-3 flex-col min-h-screen bg-slate-900 text-white">
       <div className="flex items-center mt-3 ml-2">
           <IoIosArrowBack
             className="text-white text-3xl cursor-pointer"
@@ -187,7 +187,7 @@ const UploadPage: React.FC = () => {
         {!documentFetching && <p className="text-lg mt-2 ml-4 text-gray-300">Your Documents</p>}
         {!documentFetching && documents.map((doc) => <DocumentCell key={doc.id} id={doc.id} filename={doc.filename} file_path={doc.file_path} rag_path={doc.rag_path} />)}
       </div>
-      <div className="flex col-start-3 col-span-7 flex-col min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+      <div className="flex col-start-4 col-span-6 flex-col min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
         <div className="w-full max-w-4xl mx-auto py-8 px-6">
           <p className="mt-6 text-gray-300">
             Welcome to the Upload Page! Here, you can upload your documents to get started with our chat feature. 
