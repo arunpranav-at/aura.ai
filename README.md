@@ -66,7 +66,7 @@ With features like detailed analytics, multi-model support, real-time validation
 
 # Architecture
 
-![Architecture Diagram](assets\architecture.jpg)
+![Architecture Diagram](./assets/architecture.jpg)
 
 # Azure Technologies Used
 
