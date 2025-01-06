@@ -1,8 +1,8 @@
 <center>
-<div>
-<img src="assets\logo.jpg" height="200" width="200" alt="Logo"/>
-</div>
-<h1 align="center">AURA - Analytics and Understanding for Responsible AI</h1>
+  <div style="text-align: center;">
+    <img src="assets/logo.jpg" height="200" width="200" alt="Logo"/>
+  </div>
+  <h1>AURA - Analytics and Understanding for Responsible AI</h1>
 </center>
 
 AURA is an Azure AI-based web application designed to detect hallucinations and ensure integrity across various AI models and LLMs. It provides confidence scores, complete reasoning, detailed analytics along with bias, violence, sexual and self harm, and visualizations by comparing outputs with external knowledge sources.
