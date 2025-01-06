@@ -1,7 +1,7 @@
 <center>
-  <div style="text-align: center;">
-    <img src="assets/logo.jpg" height="200" width="200" alt="Logo"/>
-  </div>
+  <p align="center">
+      <img src="assets/logo.jpg" height="200" width="200" alt="Logo"/>
+  </p>
   <h1>AURA - Analytics and Understanding for Responsible AI</h1>
 </center>
 
