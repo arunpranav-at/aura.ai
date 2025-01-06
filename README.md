@@ -1,205 +1,189 @@
-<div>
-<img src="assets\microsoft-removebg-preview.png" height="100" width="400" alt="Logo"/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="assets\azure-removebg-preview.png" height="100" width="300" alt="Logo" />
-</div>
-
 <center>
+<div>
+<img src="assets\logo.jpg" height="100" width="100" alt="Logo"/>
+</div>
 <h1 align="center">AURA - Analytics and Understanding for Responsible AI</h1>
 </center>
 
-AURA is an Azure AI based web application which is used to find hallucinations and ensure integrity among various AI models and LLMs along with confident scores, complete reasoning, detailed analytics and visualizations by comparing with external knowledge sources.
-Multiple model support(gpt-4, gpt-4o, gpt-4o-mini, gpt-35-turbo-16k, etc.,), True and False negatives and positives, user friendly interface, detailed analytics, ready to use hosted platform are some of the unique selling points of our solution.
-It is completely built on using Azure technologies like Azure App Service, Azure OpenAI, Bing Search API, Azure AI Evaluators, Azure Cosmos DB, Azure AI Foundry, Azure Container Registry, etc.,
+AURA is an Azure AI-based web application designed to detect hallucinations and ensure integrity across various AI models and LLMs. It provides confidence scores, complete reasoning, detailed analytics along with bias, violence, sexual and self harm, and visualizations by comparing outputs with external knowledge sources.
 
-<a href="" target="_blank">
+Key unique selling points of AURA include multi-model support (e.g., GPT-4, GPT-4o, GPT-4o-mini, GPT-35-turbo-16k), analysis of True/False negatives and positives, a user-friendly interface, detailed analytics, and a ready-to-use hosted platform. The solution leverages Azure technologies like Azure App Service, Azure Blob Storage, Azure AI Search, Azure Document Intelligence, Azure OpenAI, Bing Search API, Azure AI Evaluators, Azure Cosmos DB, Azure AI Foundry, and Azure Container Registry.
+
+Additionally, AURA features a RAG (Retrieval-Augmented Generation) capability, enabling users to upload their own knowledge bases in formats like PDFs, TXT, and DOCs and query information based on these custom sources. This enhances the system's adaptability and ensures more accurate and relevant outputs tailored to the user's specific needs.
+
+<a href="https://auraai.azurewebsites.net/" target="_blank">
   <img src="assets/www.png" height="50" width="50" alt="Website Logo" />
-  To be added
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/arunpranav-at/aura.ai" target="_blank">
   <img src="assets/github.png" height="50" width="50" alt="GitHub Logo" />
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="" target="_blank">
+<a href="https://youtu.be/RqOZ-0-wMjk" target="_blank">
   <img src="assets/youtube.png" height="50" width="50" alt="YouTube Logo" />
-  To be added
-</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="" target="_blank">
-  <img src="assets/ppt.jpeg" height="50" width="50" alt="Presentation Logo" />
-  To be added
 </a>
 <br/><br/>
 
-**Key Features:**
-- Multiple model support (e.g., GPT-4, GPT-4o, GPT-4o-mini, GPT-35-Turbo-16k, and custom LLMs).
-- User-friendly interface with hosted platform access.
-- User accounts for storing chat history and detailed analytics for future references and contextual queries.
-- Detailed analytics for AI evaluation metrics, including hallucination percentages.
-- Confusion matrix showing true/false positives and negatives.
-- Integration with Azure technologies for seamless scalability and reliability.
-
-
 # **Table of Contents**
 
-1. [Working](#working)
-2. [Features](#features)
-3. [Azure Technologies Used](#azure-technologies-used)
-4. [Technologies Used](#technologies-used)
-5. [Architecture](#architecture)
+1. [Features](#features)
+2. [Working](#working)
+3. [Architecture](#architecture)
+4. [Azure Technologies Used](#azure-technologies-used)
+5. [Technologies Used](#technologies-used)
 6. [Proposal](#proposal)
 7. [Team Members](#team-members)
 8. [Contributing](#contributing)
    - [Development](#development)
-8. [License](#license)
-
-# Working
-
-AURA aims to be a robust framework and accessible service that identifies hallucinations in AI-generated outputs and validates them against trusted external data sources or a pre-defined knowledge base. Furthermore, it provides false positive and false negative rates for hallucination detection, with the ability to integrate and validate with multiple external knowledge sources, and provides user-friendly visualization of hallucination metrics.
+9. [License](#license)
 
 # Features
 
-- **Multi-Model Support**: Compare prominent LLMs like GPT-4, GPT-4o, and custom models.  
-- **User Accounts:**: Support user account with authentication to maintain chat histories and user-specific analytics.  
-- **Hallucination Analysis**: Detect hallucinations with reasoning and confidence scores for every output.  
-- **Detailed Metrics**: Track performance using a confusion matrix and evaluator metrics like bias and violence detection.  
-- **External Validation**: Validate results against trusted sources using Bing Search API.  
+- **Response Evaluation**: Analyzes every response to determine whether it is hallucinated or not, ensuring high-quality outputs.  
+- **Multiple Model Support**: Supports a wide range of models, including GPT-4, GPT-4o, GPT-4o-mini, GPT-35-Turbo-16k, and custom LLMs.
+- **Bias and Content Evaluation**: Calculates metrics for violence, self-harm, sexual content, and bias in model responses, presenting these insights in detailed analytics.  
+- **Detailed Analytics**: Provides comprehensive AI evaluation metrics, including hallucination percentages, confidence scores, reasoning explanations, and content safety metrics.  
+- **Confusion Matrix**: Visualizes true/false positives and negatives for enhanced interpretability of model performance.
+- **User-Friendly Interface**: Intuitive design with hosted platform access for ease of use.  
+- **User Accounts and History**: Allows users to create accounts to store chat history, access detailed analytics, and perform contextual queries based on past interactions.  
+- **RAG (Retrieval-Augmented Generation)**: Enables users to upload custom knowledge bases (e.g., PDFs, TXT, DOCs) and query them directly for personalized results.  
+- **Integration with Azure Technologies**: Built entirely using Azure services like Azure App Service, Azure OpenAI, Azure Blob Storage, Azure AI Search, Azure Document Intelligence, Bing Search API, Azure AI Evaluators, Azure Cosmos DB, Azure AI Foundry, and Azure Container Registry for scalability and reliability.  
+- **Real-Time Comparisons**: Compares model outputs with external knowledge sources for integrity and accuracy verification.  
+- **Visualization Tools**: Includes charts, graphs, and dashboards for clear representation of analytics and evaluation results.  
+- **Customizability**: Allows organizations to integrate their unique data and LLMs to meet specific requirements.
 
+# Working
+
+AURA is a comprehensive framework and user-friendly service designed to detect hallucinations in AI-generated outputs and validate them against trusted external data sources or user-provided knowledge bases. The platform evaluates every response for hallucinations, providing detailed metrics, including false positive and false negative rates, to assess detection accuracy.  
+
+AURA seamlessly integrates with multiple external knowledge sources to ensure the integrity of AI model outputs. The platform offers robust analytics, including hallucination percentages, confidence scores, and content safety evaluations (e.g., violence, self-harm, sexual content, and bias), enabling users to gain deeper insights into model behavior.  
+
+The system supports multi-model integration (e.g., GPT-4, GPT-4o, GPT-4o-mini, GPT-35-Turbo-16k, and custom LLMs), ensuring adaptability across diverse AI use cases. Its RAG (Retrieval-Augmented Generation) feature allows users to upload custom knowledge bases in formats like PDFs, TXT, and DOCs for targeted validation and queries.  
+
+AURA includes advanced visualization tools, such as confusion matrices, charts, and dashboards, to represent hallucination metrics and performance analytics effectively. Built entirely on Azure technologies like Azure App Service, Azure OpenAI, Bing Search API, Azure AI Evaluators, Azure Cosmos DB, Azure AI Foundry, and Azure Container Registry, the platform ensures seamless scalability, reliability, and integration for enterprise use.  
+
+With features like detailed analytics, multi-model support, real-time validation, and a user-friendly interface, AURA sets a new standard in AI evaluation by delivering transparency, accountability, and adaptability for AI-powered solutions.
+
+# Architecture
+
+![Architecture Diagram](assets\architecture.jpg)
 
 # Azure Technologies Used
 
-Azure provides a robust ecosystem for development of services that can be deployed and integrated with ease. It supports integration through SDKs and libraries that aid in development of backend and continuous deployment respectively, improving development productivity while aiding in highly scalable and available deployments.
+Azure offers a comprehensive ecosystem to develop, deploy, and integrate services seamlessly. With its SDKs, libraries, and deployment tools, Azure enhances development productivity while supporting scalable and reliable deployments.  
 
-1. **Azure App Service:**
-   
-   Responsible for containerized deployment of frontend (Next.js application) and backend (FastAPI server) with Docker for efficiency in an automated manner using Github Actions, by leveraging Azure Container Registry.
+1. **Azure App Service**:  
+   Facilitates containerized deployment of the frontend (Next.js application) and backend (FastAPI server) with Docker. Deployment is automated using GitHub Actions and integrated with Azure Container Registry for efficient management.  
 
-2. **Azure Cosmos DB:**
-   
-   Used for storing user information for authentication, chat history, analytics and model test results by leveraging MongoDB for efficient querying and storage of large data for easier analytics and aggregation.
+2. **Azure Cosmos DB**:  
+   Stores user data for authentication, chat history, analytics, and model test results. It leverages MongoDB APIs for efficient querying, storage of large datasets, and streamlined analytics and aggregation.  
 
-3. **Azure OpenAI:**
-   
-   Responsible for integration of multiple Azure-hosted GPT models for robust language understanding and output generation with API keys and endpoints for easier querying.
+3. **Azure OpenAI**:  
+   Integrates multiple Azure-hosted GPT models for robust language understanding and output generation. API keys and endpoints simplify querying and model access.  
 
-4. **Azure AI Foundry:**
-   
-   Aids in orchestration of multiple LLMs for efficient processing and endpoints for several LLMs that are provided by Azure OpenAI.
+4. **Azure AI Foundry**:  
+   Orchestrates multiple LLMs for efficient processing and provides endpoints for various models hosted via Azure OpenAI.  
 
-5. **Azure AI Service:**
-   
-   Enhances the application with pre-built AI capabilities like sentiment analysis and anomaly detection.
+5. **Azure AI Service**:  
+   Enhances the platform with pre-built AI capabilities, including sentiment analysis and anomaly detection.  
 
-6. **Azure Bing Search API:**
-   
-   Serves as the primary source of extraction of information from external knowledge sources for validation of AI-generated content, which is used for verification of hallucination with and without context.
+6. **Azure Bing Search API**:  
+   Acts as the primary tool for extracting information from external knowledge sources. This data is crucial for validating AI-generated outputs and identifying hallucinations, with or without contextual input.  
 
-7. **Azure Container Registry:**
-   
-   Streamlines the deployment process by managing Docker containers for both the frontend and backend using continuous deployment for faster development to production environment.
+7. **Azure Container Registry**:  
+   Manages Docker containers for the frontend and backend, ensuring streamlined continuous deployment and faster transitions from development to production environments.  
 
-8. **Azure SDK for Python:**
-   
-   Used for authentication to Azure services from backend and usage of AI Evaluator, that is responsible for detection of bias, violence, or other issues in AI outputs by using Azure OpenAI.
+8. **Azure SDK for Python**:  
+   Enables authentication with Azure services from the backend and integrates the AI Evaluator, responsible for identifying issues such as bias, violence, or other content-related concerns in AI outputs using Azure OpenAI.  
 
-9. **Azure Cognitive Services:**
-   
-   Powers natural language understanding and computer vision features for enhanced analytics.
+9. **Azure Cognitive Services**:  
+   Powers advanced features like natural language understanding and computer vision to provide deeper insights and enhanced analytics.  
+
+10. **Azure Blob Storage**:  
+    Stores documents uploaded for custom knowledge base querying, supporting formats like PDFs, TXT, and DOCs. This ensures efficient management and retrieval of user-specific knowledge sources.  
+
+11. **Azure AI Search**:
+    Facilitates real-time querying and retrieval of information from custom knowledge bases, enhancing the RAG functionality and improving response accuracy.
+
+12. **Azure Document Intelligence**:
+    Automates the extraction and analysis of data from uploaded documents (e.g., PDFs, DOCs) to enrich the knowledge base and provide more relevant results.
 
 
 # Technologies Used
 
-1. **Next.js**:
+1. **Visual Studio Code (VSCode)**:  
+   A powerful and widely-used IDE that streamlines development with features like IntelliSense, integrated debugging, and seamless extensions. Git integration, Azure tools, and Docker support make it an essential tool for efficient development workflows.  
 
-   Powers the frontend for a dynamic and responsive web application, by leveraging TailwindCSS for responsive design along with `react-chartjs` which is responsible for providing interactive and informative data visualizations of analytics.
+2. **GitHub Copilot**:  
+   AI-powered code completion that accelerates development by generating intelligent code suggestions and boilerplate code snippets, enabling developers to focus on core logic and productivity.  
 
-2. **Python**:
-   
-   Serves as the backend's backbone for its simplicity and robust ecosystem, which allows
-   seamless integration with libraries such as LangChain and Azure SDK for Python.
+3. **Next.js**:  
+   Powers the frontend with a dynamic and responsive web application. It leverages TailwindCSS for responsive design and `react-chartjs` for interactive, informative data visualizations of analytics.  
 
-3. **FastAPI**:
+4. **Python**:  
+   Forms the backend's backbone, offering a robust ecosystem for seamless integration with libraries such as LangChain and Azure SDK for Python, ensuring efficient handling of AI workflows and Azure services.  
 
-   Enables rapid development of performant, asynchronous RESTful APIs with strong typing with Pydantic. Responsible for user authentication and integration with rest of Azure services along with the frontend
+5. **FastAPI**:  
+   Enables rapid development of performant, asynchronous RESTful APIs with strong typing using Pydantic. It handles user authentication and acts as a bridge between Azure services and the frontend.  
 
-4. **MongoDB**:
+6. **MongoDB**:  
+   A NoSQL database used for flexible and scalable data storage, including user information, chat history, and analytics. Leveraged via Azure CosmosDB using the `motor` library for asynchronous processing and enhanced performance.  
 
-   A NoSQL database for flexible and scalable data storage of user information, chat history and analytics, that is leveraged by Azure CosmosDB, using the `motor` library, which allows asynchronous processing, providing concurrency and better performance.
+7. **GitHub**:  
+   Centralized version control for collaborative development. GitHub Actions enable continuous integration and deployment (CI/CD) of the frontend and backend to production using Azure CLI and Docker.  
 
-5. **GitHub**:
-   
-   Version control and collaboration for seamless development, with GitHub Actions that allows continuous deployment of frontend and backend to the production by leveraging Azure CLI and Docker.
+8. **Docker**:  
+   Facilitates containerized application development and deployment, ensuring a conflict-free and consistent development environment. Docker Compose is used for multi-container orchestration, enhancing local development and testing.  
 
-6. **Docker**:
-
-   Facilitates containerized application development and deployment for conflict-free and good developer experience. It is paired with Docker compose for multi-container orchestration, useful for local development
-
-7. **LangChain**:
-
-   Enhances the orchestration of multiple LLMs, that is used for response generation for the prompts given by the end-user, with or without context
-
-# Architecture
-
-![Architecture Diagram]()
+9. **LangChain**:  
+   Streamlines the orchestration of multiple LLMs, enabling efficient response generation for prompts with or without context, enhancing the application's AI capabilities.
 
 ## Frontend
 
 The frontend of AURA is responsible for the following features:
 
 1. **Authentication:**
-   
-   AURA supports unauthenticated users to test the platform and model without chat history,
-   whereas authenticated users can access chat history which allows seamless access of chats.
-   Thus AURA supports user account creation.
+   AURA supports both unauthenticated users, allowing them to test the platform without chat history, and authenticated users who can access their chat history for a seamless experience. User account creation is supported.
 
 2. **Prompts to LLMs:**
-   
-   AURA supports prompting to several LLM models such as:
+   AURA allows users to prompt several LLM models such as:
    - GPT-4
    - GPT-3.5-Turbo
    - GPT-4o
-   - GPT-4o-mini
+   - GPT-4o-mini  
+   Based on specific accuracy requirements, users can evaluate hallucinations across multiple models and gather performance analytics.
 
-   based on requirements (in terms of accuracy) that are supported by the backend. This allows
-   diversification of evaluation of hallucination in several models, helping in gathering
-   analytics based on performance.
-3. **Model testing:**
-
-   AURA allows model testing by providing prompts with and without context that is processed 
-   further by the backend and provides confusion matrix visualizations for better
-   understanding.
+3. **Model Testing:**
+   AURA facilitates model testing by providing prompts with and without context. The backend processes these prompts, delivering confusion matrix visualizations to help users interpret results.
 
 4. **Analytics:**
-   
-   AURA provides an interactive dashboard, that provides visualizations based on several metrics such as hallucination, self-harm, sexual content, violence and hate unfairness.
+   AURA features an interactive dashboard displaying various metrics, such as hallucination rates, self-harm, sexual content, violence, and bias, offering insightful visualizations for comprehensive analysis.
+
+5. **RAG (Retrieval-Augmented Generation):**
+   The frontend allows users to upload custom knowledge sources in formats like PDFs, TXT, and DOCs for contextual querying. This feature enhances the accuracy of LLM responses by incorporating external knowledge into the generation process. The frontend provides an intuitive interface for uploading and querying these knowledge bases.
 
 ## Backend
 
 The backend of AURA is responsible for the following features:
 
 1. **Authentication:**
+   AURA's backend uses JWT-based authentication for secure access. It supports both authenticated and unauthenticated users, allowing users to freely explore the platform while ensuring that authenticated users can access their chat history.
 
-   AURA's backend implements JWT based authentication for end-users for secure access, despite
-   supporting unauthenticated access as it is meant to be an evaluation playground for several
-   LLMs.
+2. **Response Generation:**
+   The backend processes the user-provided prompts and integrates them with the chosen LLMs. For authenticated users, chat history is saved for future reference, enabling consistent and meaningful interactions.
 
-2. **Response generation:**
+3. **Hallucination Evaluation by Checking for Groundedness:**
+   Hallucination detection is powered by the **Azure AI Evaluator**, facilitated by the **Azure SDK for Python**. This integration evaluates both with and without context, testing the groundedness of model outputs.
 
-   The backend processes the prompts provided by the end-users and adds it to the chat history
-   for authenticated users by integration with the chosen LLMs
-
-3. **Hallucination evaluation by checking for groundedness:**
-
-   Hallucination evaluation is done by leveraging Azure AI Evaluator, provided by Azure SDK for Python, which supports evaluation with and without context information, which helps in testing the groundedness of the models
-
-4. **Context generation:**
-
-   Context generation is done by leveraging external knowledge sources, primarily Bing API, for testing the models for groundedness by hallucinator evaluator
+4. **Context Generation:**
+   Context is generated using **Bing Search API**, enabling the platform to retrieve relevant external knowledge to validate the LLM responses. This process supports the detection of hallucinations by grounding the model’s output against reliable sources.
 
 5. **Analytics:**
-   
-   Provides the needed information for the frontend for data visualization by querying from CosmosDB, which allows aggregated analysis
+   The backend provides detailed analytical data for visualization on the frontend. Data is aggregated from **Azure Cosmos DB**, which stores user interactions, analytics, and model test results, allowing for in-depth evaluation and insights.
+
+6. **RAG (Retrieval-Augmented Generation):**
+   The backend powers the **RAG** feature, enabling the retrieval of user-provided knowledge bases for custom queries. These documents (e.g., PDFs, TXT, DOCs) are uploaded to **Azure Blob Storage** and processed by the backend to enhance the relevance of AI responses. The integration of **Azure Cognitive Search** allows users to search these documents efficiently, ensuring that queries are answered with tailored and accurate information.
+
 # Proposal
 
 We propose to integrate our hallucinator predictor with Azure AI Studio for evaluation by integration of external data sources that can be used for validation of responses from models, which will be useful for enhancement of accuracy of LLMs over time through intensive analytics. This will be useful for monitoring performance metrics of LLMs provided by Azure AI Foundry, aiding in reduction of AI hallucinations present in early stages of adoption of AI
