@@ -5,7 +5,7 @@ from models.analytics import Analytics
 from config import AppConfig
 
 from services.ai.response.generate import BotHandler
-from services.ai.hallucination.predict import hallucinationpredictor_without_contextinput
+from services.ai.hallucination.predict import hallucination_predictor_without_contextinput
 from services.ai.response.metrics import evaluate_hateunfairness, evaluate_selfharm, evaluate_sexual, evaluate_violence
 
 config = AppConfig()
@@ -100,7 +100,7 @@ async def generate_response(request: ChatRequest, background_tasks: BackgroundTa
     try:
         bot_response = BotHandler(prompt=request.message, model=request.model)
         response = bot_response.get("response", "No response generated")
-        hallucination = hallucinationpredictor_without_contextinput(
+        hallucination = hallucination_predictor_without_contextinput(
             request.message, response)
         background_tasks.add_task(metrics_evaluator, request.message,
                                   response, request.model, hallucination['groundedness'])
@@ -112,7 +112,7 @@ async def generate_response(request: ChatRequest, background_tasks: BackgroundTa
 @router.post("/generate-metrics")
 async def generate_response(request: ModelResponse, background_tasks: BackgroundTasks):
     try:
-        hallucination = hallucinationpredictor_without_contextinput(
+        hallucination = hallucination_predictor_without_contextinput(
             request.user_message, request.response)
         background_tasks.add_task(metrics_evaluator, request.user_message,
                                   request.response, request.model, hallucination['groundedness'])

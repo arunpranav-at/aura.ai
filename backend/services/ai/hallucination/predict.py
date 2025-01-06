@@ -1,17 +1,17 @@
 import os
 from dotenv import load_dotenv
 from azure.ai.evaluation import GroundednessEvaluator
-from services.ai.context.generate import contextgenerator
+from services.ai.context.generate import context_generator
 from langchain_openai import AzureChatOpenAI
 from langchain_community.callbacks import get_openai_callback
+from config import get_config
 
-# Load environment variables from .env file
 load_dotenv()
 
-# --------------------------------------------------------------------------------------------------------- #
+config = get_config()
 
 
-def hallucinationpredictor_without_contextinput(query, response):
+def hallucination_predictor_without_contextinput(query, response):
     """
     Evaluates the groundedness of a query, context, and response pair using Azure AI evaluation tools.
 
@@ -30,15 +30,13 @@ def hallucinationpredictor_without_contextinput(query, response):
     elif prompttype == "greeting":
         return {"groundedness": 5.0, "gpt_groundedness": 5.0, "groundedness_reason": "The given prompt is a casual or open ended statments that are typically informal and general designed to elicit conversational responses from the model,hence it is not considered as an instance of hallucination."}
 
-    # Generate context dynamically using contextgenerator
-    context = contextgenerator(query)
+    # Generate context dynamically using context_generator
+    context = context_generator(query)
 
-    return hallucinationpredictor(query, response, context)
-
-# --------------------------------------------------------------------------------------------------------- #
+    return hallucination_predictor(query, response, context)
 
 
-def hallucinationpredictor(query, response, context):
+def hallucination_predictor(query, response, context):
     """
     Evaluates the groundedness of a query, context, and response pair using Azure AI evaluation tools.
 
@@ -53,18 +51,18 @@ def hallucinationpredictor(query, response, context):
     """
 
     # Classify the prompt to determine the type of task
-    prompttype = classify_prompt(query)
-    if prompttype == "open-ended creative":
+    prompt_type = classify_prompt(query)
+    if prompt_type == "open-ended creative":
         return {"groundedness": 6.0, "gpt_groundedness": 6.0, "groundedness_reason": "The response to the above prompt is expected to be a type of intentional hallucination, as it is an open-ended creative task and does not require factual accuracy."}
-    elif prompttype == "greeting":
+    elif prompt_type == "greeting":
         return {"groundedness": 5.0, "gpt_groundedness": 5.0, "groundedness_reason": "The response is a simple greeting or salutation, which is a common social interaction and hence it is not considered as an instance of hallucination."}
 
     # Model Configuration
     model_config = {
-        "azure_endpoint": os.getenv("AZURE_OPENAI_ENDPOINT"),
-        "api_key": os.getenv("AZURE_OPENAI_API_KEY"),
-        "azure_deployment": os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-        "api_version": os.getenv("AZURE_OPENAI_API_VERSION"),
+        "azure_endpoint": config.env.azure_openai_endpoint,
+        "api_key": config.env.azure_openai_api_key,
+        "azure_deployment": config.env.azure_openai_deployment,
+        "api_version": config.env.azure_openai_api_version
     }
 
     # Initializing Groundedness and Groundedness Pro evaluators
@@ -80,8 +78,6 @@ def hallucinationpredictor(query, response, context):
     # Run the evaluator and return the score
     groundedness_score = groundedness_eval(**query_response)
     return groundedness_score
-
-# --------------------------------------------------------------------------------------------------------- #
 
 
 def classify_prompt(prompt: str):
@@ -120,15 +116,11 @@ def classify_prompt(prompt: str):
     {prompt}
     """
 
-    # Initialize communication with the Azure OpenAI model
     try:
-        api_key = os.getenv("AZURE_OPENAI_API_KEY_gpt_4o_mini")
-        endpoint = os.getenv("AZURE_OPENAI_ENDPOINT_gpt_4o_mini")
-        deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT_gpt_4o_mini")
-        api_version = os.getenv("AZURE_OPENAI_API_VERSION_gpt_4o_mini")
-
-        if not all([api_key, endpoint, deployment, api_version]):
-            raise Exception("Missing environment variables for gpt-4o-mini")
+        api_key = config.env.azure_openai_api_key_gpt_4o_mini
+        endpoint = config.env.azure_openai_endpoint_gpt_4o_mini
+        deployment = config.env.azure_openai_deployment_gpt_4o_mini
+        api_version = config.env.azure_openai_api_version_gpt_4o_mini
 
         llm = AzureChatOpenAI(
             openai_api_key=api_key,
@@ -141,7 +133,6 @@ def classify_prompt(prompt: str):
             max_retries=2,
         )
 
-        # Format prompt for the model
         with get_openai_callback() as cb:
             output = llm.invoke(classification_prompt)
             ret = output.content.strip()

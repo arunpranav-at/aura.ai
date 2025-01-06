@@ -1,6 +1,4 @@
-import bson
-from fastapi import APIRouter, Request, HTTPException
-from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi import APIRouter
 
 from config import AppConfig, get_config
 from routers.auth import router as auth_router

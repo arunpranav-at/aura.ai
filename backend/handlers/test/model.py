@@ -1,4 +1,4 @@
-from services.ai.hallucination.predict import hallucinationpredictor
+from services.ai.hallucination.predict import hallucination_predictor
 from models.test import TestResults
 from config import AppConfig
 
@@ -6,7 +6,7 @@ config = AppConfig()
 
 
 async def test_model_handler(query: str, response: str, context: str, result: str):
-    groundednessResult = hallucinationpredictor(query, response, context)
+    groundednessResult = hallucination_predictor(query, response, context)
     score = groundednessResult['groundedness']
     res = "Hallucinating"
     if score >= 4:
